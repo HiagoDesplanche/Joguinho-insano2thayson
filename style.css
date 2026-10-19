@@ -1,0 +1,479 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Patrick+Hand&display=swap');
+
+:root {
+  --quadro: #174b3b;
+  --quadro-escuro: #10382d;
+  --giz: #f4f4df;
+  --amarelo: #ffe477;
+  --coral: #ff887d;
+  --menta: #b8f2d5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--giz);
+  background: #e9e4d7;
+  background-image: radial-gradient(#d2cbbb 1px, transparent 1px);
+  background-size: 14px 14px;
+  font-family: 'Nunito', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.topo {
+  width: 100%;
+  min-height: 70px;
+  padding: 15px clamp(18px, 5vw, 65px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #fffdf4;
+  color: #234c3d;
+  border-bottom: 3px solid #d7d0bf;
+}
+
+.marca {
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  font-size: 1rem;
+}
+
+.serie {
+  font-size: .76rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.quadro {
+  width: min(920px, calc(100% - 32px));
+  margin: 34px auto 24px;
+  position: relative;
+  padding: 15px;
+  border-radius: 12px;
+  background: linear-gradient(
+    135deg, #b87940, #e2b66c 15%,
+    #99602f 16%, #bd854a 88%, #754622
+  );
+  box-shadow: 0 12px 22px #3b291b35, inset 0 2px 3px #fff7;
+}
+
+.moldura {
+  min-height: 550px;
+  border: 2px solid #0d342a;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: var(--quadro);
+  background-image:
+    radial-gradient(ellipse at 15% 20%, #ffffff08 0 1px, transparent 2px),
+    radial-gradient(ellipse at 70% 60%, #00000010 0 1px, transparent 2px),
+    repeating-linear-gradient(
+      2deg, transparent 0 5px, #ffffff04 6px, transparent 7px
+    );
+  padding: clamp(22px, 5vw, 48px);
+}
+
+.tela {
+  max-width: 690px;
+  margin: auto;
+}
+
+.escondido {
+  display: none !important;
+}
+
+.tela-inicio {
+  text-align: center;
+  padding: 8px 0 16px;
+}
+
+.giz {
+  color: var(--amarelo);
+  font-family: 'Patrick Hand', cursive;
+  letter-spacing: 2px;
+}
+
+.pequeno {
+  font-size: 1.15rem;
+  margin: 0 0 10px;
+}
+
+h1, h2 {
+  font-family: 'Patrick Hand', cursive;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+h1 {
+  font-size: clamp(2.8rem, 7vw, 4.5rem);
+  margin: 0;
+}
+
+h1 span {
+  color: var(--amarelo);
+  display: block;
+}
+
+.intro {
+  max-width: 520px;
+  margin: 20px auto;
+  color: #e5f0e5;
+  font-size: 1.04rem;
+  line-height: 1.7;
+}
+
+.desenho {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin: 14px 0 20px;
+  color: var(--amarelo);
+  font-size: 1.6rem;
+}
+
+.livro {
+  font-size: 3.3rem;
+  filter: drop-shadow(0 4px 0 #09291f);
+}
+
+.regras {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  max-width: 510px;
+  margin: 0 auto 28px;
+}
+
+.regras div {
+  padding: 13px 5px;
+  border: 1px dashed #bde5cf88;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.regras span {
+  font-size: 1.5rem;
+}
+
+.regras strong {
+  color: var(--amarelo);
+}
+
+.regras small {
+  font-size: .75rem;
+  color: #d5e4d8;
+}
+
+.botao {
+  border: 0;
+  border-radius: 12px;
+  padding: 13px 19px;
+  font: 900 1rem 'Nunito', sans-serif;
+  cursor: pointer;
+  transition: transform .15s, filter .15s;
+}
+
+.botao:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+}
+
+.botao:focus-visible,
+.opcao:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 3px;
+}
+
+.principal {
+  background: var(--amarelo);
+  color: #294333;
+  box-shadow: 0 4px 0 #c5a63f;
+}
+
+.secundario {
+  background: #d9e7df;
+  color: #234b3b;
+  box-shadow: 0 3px 0 #9db7a8;
+}
+
+.painel-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.etiqueta {
+  background: var(--amarelo);
+  color: #234b3b;
+  font-weight: 900;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: .76rem;
+}
+
+.pontos, .progresso-texto {
+  font-size: .88rem;
+}
+
+.barra {
+  height: 8px;
+  background: #0d382b;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 16px 0 25px;
+}
+
+.barra div {
+  width: 0;
+  height: 100%;
+  background: var(--amarelo);
+  border-radius: 20px;
+  transition: width .3s;
+}
+
+.categoria {
+  color: var(--menta);
+  letter-spacing: 2px;
+  font-size: .75rem;
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+#pergunta {
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  margin: 0 0 7px;
+}
+
+.instrucao {
+  color: #d4e5d9;
+  margin: 0 0 18px;
+}
+
+.frase {
+  border-left: 4px solid var(--amarelo);
+  background: #0e3a2e99;
+  padding: 18px 20px;
+  border-radius: 0 10px 10px 0;
+  font: 1.5rem 'Patrick Hand', cursive;
+  line-height: 1.5;
+  margin-bottom: 18px;
+}
+
+.opcoes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.opcao {
+  padding: 13px 14px;
+  border-radius: 10px;
+  border: 2px solid #b9d7c4;
+  color: var(--giz);
+  background: #ffffff0a;
+  font: 700 .95rem 'Nunito', sans-serif;
+  cursor: pointer;
+  text-align: left;
+  transition: .15s;
+}
+
+.opcao:hover:not(:disabled) {
+  background: #ffffff16;
+  border-color: var(--amarelo);
+}
+
+.opcao:disabled {
+  cursor: default;
+}
+
+.opcao.correta {
+  background: #d4f5df;
+  border-color: #8be0aa;
+  color: #174b3b;
+}
+
+.opcao.errada {
+  background: #ffe0d9;
+  border-color: #ff9e90;
+  color: #77382d;
+}
+
+.feedback {
+  min-height: 50px;
+  margin-top: 14px;
+  padding: 0;
+  border-radius: 10px;
+  line-height: 1.5;
+}
+
+.feedback:not(:empty) {
+  padding: 12px 14px;
+  background: #0d382b99;
+}
+
+.feedback.bom {
+  color: #baf4d0;
+}
+
+.feedback.ajuda {
+  color: #ffe7a3;
+}
+
+.acoes {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.acoes .botao {
+  font-size: .88rem;
+  padding: 11px 14px;
+}
+
+#fim {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.trofeu {
+  font-size: 4rem;
+  margin: 12px 0;
+}
+
+#titulo-final {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.resultado {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 26px auto;
+}
+
+.resultado div {
+  min-width: 135px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border: 1px dashed #c6e2ce88;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.resultado strong {
+  color: var(--amarelo);
+  font: 2.2rem 'Patrick Hand', cursive;
+}
+
+.resultado small {
+  font-size: .77rem;
+  color: #e0ece2;
+}
+
+.dica-final {
+  max-width: 500px;
+  margin: 0 auto 24px;
+  line-height: 1.6;
+  color: #d8e8dc;
+}
+
+.gizera {
+  display: flex;
+  justify-content: flex-end;
+  gap: 5px;
+  padding: 7px 12px 0;
+}
+
+.gizera span {
+  height: 6px;
+  width: 36px;
+  border-radius: 5px;
+  background: #fff4c8;
+  transform: rotate(-4deg);
+}
+
+.gizera span:nth-child(2) {
+  background: #f5a6a0;
+}
+
+.gizera span:nth-child(3) {
+  background: #b6d6ff;
+}
+
+footer {
+  margin: auto 15px 20px;
+  text-align: center;
+  color: #55564d;
+  font-size: .8rem;
+}
+
+@media (max-width: 560px) {
+  .topo {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .quadro {
+    width: calc(100% - 18px);
+    margin-top: 18px;
+    padding: 8px;
+  }
+
+  .moldura {
+    padding: 22px 16px;
+    min-height: 500px;
+  }
+
+  .opcoes {
+    grid-template-columns: 1fr;
+  }
+
+  .regras {
+    gap: 6px;
+  }
+
+  .regras small {
+    font-size: .67rem;
+  }
+
+  .frase {
+    font-size: 1.35rem;
+  }
+
+  .acoes {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .acoes .botao {
+    width: 100%;
+  }
+
+  .resultado {
+    gap: 8px;
+  }
+
+  .resultado div {
+    min-width: 0;
+    flex: 1;
+    padding: 12px 6px;
+  }
+}
+
