@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Jogo educativo de Língua Portuguesa para o 6º ano.">
+  <title>Missão Português — Detetives da Gramática</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="topo">
+    <div class="marca">✎ MISSÃO PORTUGUÊS</div>
+    <div class="serie">6º ANO • LÍNGUA PORTUGUESA</div>
+  </header>
+
+  <main class="quadro">
+    <div class="moldura">
+
+      <section id="inicio" class="tela tela-inicio">
+        <p class="giz pequeno">✦ DESAFIO DO DIA ✦</p>
+        <h1>Detetives da <span>Gramática</span></h1>
+
+        <p class="intro">
+          Resolva os desafios e descubra qual porquê usar,
+          além de aprender onde colocar a vírgula e o ponto final!
+        </p>
+
+        <div class="desenho" aria-hidden="true">
+          <span>✦</span><span class="livro">📚</span><span>✧</span>
+        </div>
+
+        <div class="regras">
+          <div>
+            <span>🧠</span>
+            <strong>Pense</strong>
+            <small>Leia com atenção</small>
+          </div>
+          <div>
+            <span>💡</span>
+            <strong>Aprenda</strong>
+            <small>Receba dicas</small>
+          </div>
+          <div>
+            <span>🏆</span>
+            <strong>Avance</strong>
+            <small>Suba de nível</small>
+          </div>
+        </div>
+
+        <button id="comecar" class="botao principal">
+          Começar missão ➜
+        </button>
+      </section>
+
+      <section id="jogo" class="tela escondido" aria-live="polite">
+        <div class="painel-status">
+          <span id="nivel" class="etiqueta">NÍVEL 1</span>
+          <span>⭐ <strong id="pontos">0</strong> pontos</span>
+          <span><strong id="numero">1</strong>/<span id="total">10</span></span>
+        </div>
+
+        <div class="barra">
+          <div id="barra-progresso"></div>
+        </div>
+
+        <p id="categoria" class="categoria">MISSÃO: OS PORQUÊS</p>
+        <h2 id="pergunta">Complete a frase</h2>
+        <p id="instrucao" class="instrucao">
+          Escolha a alternativa correta.
+        </p>
+
+        <div id="frase" class="frase"></div>
+        <div id="opcoes" class="opcoes"></div>
+
+        <div id="feedback" class="feedback" role="status"
+             aria-live="polite"></div>
+
+        <div class="acoes">
+          <button id="dica" class="botao secundario">
+            💡 Preciso de uma dica
+          </button>
+          <button id="proxima" class="botao principal escondido">
+            Próxima questão ➜
+          </button>
+        </div>
+      </section>
+
+      <section id="fim" class="tela escondido">
+        <p class="giz pequeno">✦ MISSÃO CONCLUÍDA ✦</p>
+        <div class="trofeu">🏆</div>
+        <h2 id="titulo-final">Mandou bem!</h2>
+        <p id="mensagem-final" class="intro"></p>
+
+        <div class="resultado">
+          <div>
+            <strong id="pontuacao-final">0</strong>
+            <small>pontos</small>
+          </div>
+          <div>
+            <strong id="acertos-final">0/10</strong>
+            <small>acertos na primeira tentativa</small>
+          </div>
+        </div>
+
+        <p id="dica-final" class="dica-final"></p>
+
+        <button id="reiniciar" class="botao principal">
+          Jogar novamente ↻
+        </button>
+      </section>
+
+    </div>
+
+    <div class="gizera" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </div>
+  </main>
+
+  <footer>
+    Feito para aprender brincando • Cada erro é uma chance de aprender! ✨
+  </footer>
+</body>
+</html>
+
