@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -5,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Jogo educativo de Língua Portuguesa para o 6º ano.">
   <title>Missão Português — Detetives da Gramática</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
 </head>
 <body>
   <header class="topo">
@@ -27,7 +28,9 @@
         </p>
 
         <div class="desenho" aria-hidden="true">
-          <span>✦</span><span class="livro">📚</span><span>✧</span>
+          <span>✦</span>
+          <span class="livro">📚</span>
+          <span>✧</span>
         </div>
 
         <div class="regras">
@@ -48,7 +51,7 @@
           </div>
         </div>
 
-        <button id="comecar" class="botao principal">
+        <button id="comecar" class="botao principal" type="button">
           Começar missão ➜
         </button>
       </section>
@@ -77,10 +80,10 @@
              aria-live="polite"></div>
 
         <div class="acoes">
-          <button id="dica" class="botao secundario">
+          <button id="dica" class="botao secundario" type="button">
             💡 Preciso de uma dica
           </button>
-          <button id="proxima" class="botao principal escondido">
+          <button id="proxima" class="botao principal escondido" type="button">
             Próxima questão ➜
           </button>
         </div>
@@ -105,7 +108,7 @@
 
         <p id="dica-final" class="dica-final"></p>
 
-        <button id="reiniciar" class="botao principal">
+        <button id="reiniciar" class="botao principal" type="button">
           Jogar novamente ↻
         </button>
       </section>
