@@ -1,3 +1,5 @@
+"use strict";
+
 const perguntas = [
   {
     tipo: "porques",
@@ -14,7 +16,12 @@ const perguntas = [
     pergunta: "Qual sinal encerra a frase?",
     instrucao: "A frase apresenta uma informação.",
     frase: "A biblioteca fecha às cinco horas ____",
-    opcoes: ["Vírgula (,)", "Ponto final (.)", "Interrogação (?)", "Dois-pontos (:)"],
+    opcoes: [
+      "Vírgula (,)",
+      "Ponto final (.)",
+      "Interrogação (?)",
+      "Dois-pontos (:)"
+    ],
     correta: 1,
     explicacao: "O ponto final encerra uma frase declarativa.",
     dica: "A frase informa um horário. Não é uma pergunta."
@@ -91,7 +98,7 @@ const perguntas = [
       "Nenhum sinal"
     ],
     correta: 1,
-    explicacao: "Normalmente usamos vírgula antes de 'mas', que indica oposição.",
+    explicacao: "A vírgula costuma ser usada antes de 'mas', que indica oposição. A frase completa fica: 'Eu queria brincar, mas precisava terminar a tarefa.'",
     dica: "A palavra 'mas' liga ideias que contrastam."
   },
   {
@@ -121,16 +128,19 @@ const perguntas = [
   }
 ];
 
+// Elementos das telas
 const inicio = document.getElementById("inicio");
 const jogo = document.getElementById("jogo");
 const fim = document.getElementById("fim");
 
+// Elementos do painel
 const pontosEl = document.getElementById("pontos");
 const nivelEl = document.getElementById("nivel");
 const numeroEl = document.getElementById("numero");
 const totalEl = document.getElementById("total");
 const barra = document.getElementById("barra-progresso");
 
+// Elementos das perguntas
 const categoriaEl = document.getElementById("categoria");
 const perguntaEl = document.getElementById("pergunta");
 const instrucaoEl = document.getElementById("instrucao");
@@ -138,17 +148,21 @@ const fraseEl = document.getElementById("frase");
 const opcoesEl = document.getElementById("opcoes");
 const feedbackEl = document.getElementById("feedback");
 
+// Botões
+const comecarBtn = document.getElementById("comecar");
 const dicaBtn = document.getElementById("dica");
 const proximaBtn = document.getElementById("proxima");
+const reiniciarBtn = document.getElementById("reiniciar");
 
+// Estado do jogo
 let indice = 0;
 let pontos = 0;
 let acertosPrimeira = 0;
 let respondeu = false;
 let tentouErrado = false;
 let dicaUsada = false;
-let nivelAtual = 1;
 
+// Alterna entre as telas
 function mostrarTela(tela) {
   [inicio, jogo, fim].forEach(elemento => {
     elemento.classList.add("escondido");
@@ -157,25 +171,30 @@ function mostrarTela(tela) {
   tela.classList.remove("escondido");
 }
 
+// Calcula o nível do jogador
 function calcularNivel() {
-  // O nível aumenta conforme o número de acertos.
   if (acertosPrimeira >= 7) return 3;
   if (acertosPrimeira >= 3) return 2;
   return 1;
 }
 
+// Inicia ou reinicia a missão
 function comecar() {
   indice = 0;
   pontos = 0;
   acertosPrimeira = 0;
-  nivelAtual = 1;
+  respondeu = false;
+  tentouErrado = false;
+  dicaUsada = false;
 
-  pontosEl.textContent = pontos;
+  pontosEl.textContent = "0";
+  barra.style.width = "0%";
 
   mostrarTela(jogo);
   mostrarPergunta();
 }
 
+// Exibe a pergunta atual
 function mostrarPergunta() {
   const p = perguntas[indice];
 
@@ -183,15 +202,14 @@ function mostrarPergunta() {
   tentouErrado = false;
   dicaUsada = false;
 
-  nivelAtual = calcularNivel();
-
   feedbackEl.textContent = "";
   feedbackEl.className = "feedback";
 
   dicaBtn.classList.remove("escondido");
+  dicaBtn.disabled = false;
   proximaBtn.classList.add("escondido");
 
-  nivelEl.textContent = `NÍVEL ${nivelAtual}`;
+  nivelEl.textContent = `NÍVEL ${calcularNivel()}`;
   numeroEl.textContent = indice + 1;
   totalEl.textContent = perguntas.length;
 
@@ -207,7 +225,8 @@ function mostrarPergunta() {
   instrucaoEl.textContent = p.instrucao;
   fraseEl.textContent = p.frase;
 
-  opcoesEl.innerHTML = "";
+  // Cria as alternativas sem inserir texto HTML externo
+  opcoesEl.replaceChildren();
 
   p.opcoes.forEach((opcao, i) => {
     const botao = document.createElement("button");
@@ -225,6 +244,7 @@ function mostrarPergunta() {
   });
 }
 
+// Verifica a resposta escolhida
 function verificarResposta(escolha, botaoEscolhido) {
   if (respondeu) return;
 
@@ -253,15 +273,13 @@ function verificarResposta(escolha, botaoEscolhido) {
         `👏 Você conseguiu! ${p.explicacao} +5 pontos!`;
     }
 
-    feedbackEl.classList.add("bom");
+    feedbackEl.className = "feedback bom";
     pontosEl.textContent = pontos;
 
     dicaBtn.classList.add("escondido");
     proximaBtn.classList.remove("escondido");
 
-    // Atualiza o nível de acordo com os acertos.
-    nivelAtual = calcularNivel();
-    nivelEl.textContent = `NÍVEL ${nivelAtual}`;
+    nivelEl.textContent = `NÍVEL ${calcularNivel()}`;
 
     proximaBtn.textContent =
       indice === perguntas.length - 1
@@ -277,11 +295,11 @@ function verificarResposta(escolha, botaoEscolhido) {
     feedbackEl.textContent =
       `Quase! ${p.dica} Tente outra alternativa.`;
 
-    feedbackEl.classList.remove("bom");
-    feedbackEl.classList.add("ajuda");
+    feedbackEl.className = "feedback ajuda";
   }
 }
 
+// Mostra uma dica sem revelar a resposta
 function mostrarDica() {
   if (respondeu || dicaUsada) return;
 
@@ -291,9 +309,15 @@ function mostrarDica() {
     `💡 Dica: ${perguntas[indice].dica}`;
 
   feedbackEl.className = "feedback ajuda";
+
+  // A dica só pode ser usada uma vez por pergunta
+  dicaBtn.disabled = true;
 }
 
+// Avança para a próxima pergunta
 function proximaPergunta() {
+  if (!respondeu) return;
+
   if (indice < perguntas.length - 1) {
     indice++;
     mostrarPergunta();
@@ -302,11 +326,14 @@ function proximaPergunta() {
   }
 }
 
+// Exibe o resultado final
 function mostrarResultado() {
   mostrarTela(fim);
+
   barra.style.width = "100%";
 
-  document.getElementById("pontuacao-final").textContent = pontos;
+  document.getElementById("pontuacao-final").textContent =
+    pontos;
 
   document.getElementById("acertos-final").textContent =
     `${acertosPrimeira}/${perguntas.length}`;
@@ -330,16 +357,14 @@ function mostrarResultado() {
   }
 
   dicaFinal.textContent =
-    "Resumo: porque explica; por que pergunta; por quê aparece no fim de uma pergunta; porquê significa 'o motivo'. A vírgula organiza partes da frase e o ponto final encerra uma afirmação.";
+    "Resumo: porque explica; por que é usado em perguntas; por quê aparece no fim de uma pergunta; porquê significa 'o motivo'. A vírgula organiza partes da frase e o ponto final encerra uma afirmação.";
 }
 
-document.getElementById("comecar")
-  .addEventListener("click", comecar);
-
+// Eventos dos botões
+comecarBtn.addEventListener("click", comecar);
 dicaBtn.addEventListener("click", mostrarDica);
-
 proximaBtn.addEventListener("click", proximaPergunta);
+reiniciarBtn.addEventListener("click", comecar);
 
-document.getElementById("reiniciar")
-  .addEventListener("click", comecar);
-}
+// Confirma que os arquivos foram conectados corretamente
+console.log("Missão Português carregada com sucesso!");
