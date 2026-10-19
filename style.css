@@ -1,3 +1,5 @@
+
+  
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Patrick+Hand&display=swap');
 
 :root {
@@ -222,10 +224,6 @@ h1 span {
   font-size: .76rem;
 }
 
-.pontos, .progresso-texto {
-  font-size: .88rem;
-}
-
 .barra {
   height: 8px;
   background: #0d382b;
@@ -295,6 +293,7 @@ h1 span {
 
 .opcao:disabled {
   cursor: default;
+  opacity: .9;
 }
 
 .opcao.correta {
@@ -476,4 +475,3 @@ footer {
     padding: 12px 6px;
   }
 }
-
